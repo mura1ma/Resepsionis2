@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSet1" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableInvoice" msprop:Generator_RowClassName="DataTableInvoiceRow" msprop:Generator_RowEvHandlerName="DataTableInvoiceRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableInvoiceRowDeleted" msprop:Generator_RowDeletingName="DataTableInvoiceRowDeleting" msprop:Generator_RowEvArgName="DataTableInvoiceRowChangeEvent" msprop:Generator_TablePropName="DataTableInvoice" msprop:Generator_RowChangedName="DataTableInvoiceRowChanged" msprop:Generator_UserTableName="DataTableInvoice" msprop:Generator_RowChangingName="DataTableInvoiceRowChanging" msprop:Generator_TableClassName="DataTableInvoiceDataTable" msprop:Generator_TableVarName="tableDataTableInvoice">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CheckIn" msprop:Generator_UserColumnName="CheckIn" msprop:Generator_ColumnPropNameInTable="CheckInColumn" msprop:Generator_ColumnPropNameInRow="CheckIn" msprop:Generator_ColumnVarNameInTable="columnCheckIn" type="xs:string" minOccurs="0" />
+              <xs:element name="CheckOut" msprop:Generator_UserColumnName="CheckOut" msprop:Generator_ColumnPropNameInTable="CheckOutColumn" msprop:Generator_ColumnPropNameInRow="CheckOut" msprop:Generator_ColumnVarNameInTable="columnCheckOut" type="xs:string" minOccurs="0" />
+              <xs:element name="NoKamar" msprop:Generator_UserColumnName="NoKamar" msprop:Generator_ColumnPropNameInTable="NoKamarColumn" msprop:Generator_ColumnPropNameInRow="NoKamar" msprop:Generator_ColumnVarNameInTable="columnNoKamar" type="xs:string" minOccurs="0" />
+              <xs:element name="JumlahKamar" msprop:Generator_UserColumnName="JumlahKamar" msprop:Generator_ColumnPropNameInTable="JumlahKamarColumn" msprop:Generator_ColumnPropNameInRow="JumlahKamar" msprop:Generator_ColumnVarNameInTable="columnJumlahKamar" type="xs:string" minOccurs="0" />
+              <xs:element name="JumlahMalam" msprop:Generator_UserColumnName="JumlahMalam" msprop:Generator_ColumnPropNameInTable="JumlahMalamColumn" msprop:Generator_ColumnPropNameInRow="JumlahMalam" msprop:Generator_ColumnVarNameInTable="columnJumlahMalam" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalBayar" msprop:Generator_UserColumnName="TotalBayar" msprop:Generator_ColumnPropNameInTable="TotalBayarColumn" msprop:Generator_ColumnPropNameInRow="TotalBayar" msprop:Generator_ColumnVarNameInTable="columnTotalBayar" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
