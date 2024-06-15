@@ -298,7 +298,7 @@ Partial Class Pendinglist
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Pendinglist"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = " ver 24.05.17"
+        Me.Text = " ver 24.06.15"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()

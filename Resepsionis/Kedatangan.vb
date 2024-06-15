@@ -24,6 +24,7 @@ Public Class Kedatangan
     Public TGLOUT As Date
     Public TGLTUNAI As Date
     Public passwordsuper As String
+    Public jmlinputawal As Integer = 0
 
     Dim WithEvents PD As New PrintDocument
     Dim PPD As New PrintPreviewDialog
@@ -216,7 +217,7 @@ Public Class Kedatangan
                 Labelttlbayar.Text = "Rp. -"
             End Try
         End If
-
+        jmlinputawal = DataGridViewTunai.RowCount '' tambah input dikosongkan dahulu
     End Sub
 
     Private Sub Simpanbtn_Click(sender As Object, e As EventArgs) Handles Simpanbtn.Click
@@ -988,19 +989,25 @@ Public Class Kedatangan
     End Sub
 
     Private Sub Buttoninputbayar_Click(sender As Object, e As EventArgs) Handles Buttoninputbayar.Click
-        DataGridViewTunai.Rows.Add()
-        DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("ColumnTgl").Value = DateTimePickertunai.Value.ToString("dd MMM yyyy HH:mm:ss")
-        DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("Columntunai").Value = TextBoxInputTunai.Text
-        DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("Columnketerangan").Value = RichTextBoxKetTunai.Text
+        If TextBoxInputTunai.Text = 0 Then
+            MsgBox("Masukkan angka")
+            TextBoxInputTunai.Focus()
+        Else
+            DataGridViewTunai.Rows.Add()
+            DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("ColumnTgl").Value = DateTimePickertunai.Value.ToString("dd MMM yyyy HH:mm:ss")
+            DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("Columntunai").Value = TextBoxInputTunai.Text
+            DataGridViewTunai.Rows(DataGridViewTunai.Rows.Count - 1).Cells("Columnketerangan").Value = RichTextBoxKetTunai.Text
 
-        Dim totaltunai As Integer = 0
-        For a = 0 To DataGridViewTunai.Rows.Count - 1
-            totaltunai = totaltunai + DataGridViewTunai.Rows(a).Cells("Columntunai").Value
-        Next
-        TextBoxTunai.Text = totaltunai
+            Dim totaltunai As Integer = 0
+            For a = 0 To DataGridViewTunai.Rows.Count - 1
+                totaltunai = totaltunai + DataGridViewTunai.Rows(a).Cells("Columntunai").Value
+            Next
+            TextBoxTunai.Text = totaltunai
 
-        RichTextBoxKetTunai.Text = ""
-        TextBoxInputTunai.Text = ""
+            RichTextBoxKetTunai.Text = ""
+            TextBoxInputTunai.Text = ""
+        End If
+
         'End If
     End Sub
     Sub checknull()
@@ -1229,17 +1236,23 @@ Public Class Kedatangan
             Dim STRINGSQL As String = "SELECT * FROM KAS ORDER BY URUT DESC LIMIT 1"
             changedatafromtabel(STRINGSQL, DTINPUT)
 
+
             UPDATESALDOKAS(CDate(DataGridViewTunai.Rows(0).Cells("ColumnTgl").Value).ToString("yyyy-MM-dd HH:mm:ss"))
+
+
 
         End If
     End Sub
 
     Private Sub ButtonTambah_Click(sender As Object, e As EventArgs) Handles ButtonTambah.Click
+        'If TextBoxInputTunai.Text = 0 Then
+        '    MsgBox("Isi pembayaran dahulu!")
+        'Else
         Dim gabung As Integer
-        Dim ttlbayar As Integer = CInt(TextBoxtotalbill.Text) - CInt(TextBoxpotonganlain.Text) + CInt(TextBoxadminfee.Text) + CInt(TextBoxExtraBed.Text) - CInt(TextBoxTunai.Text) - CInt(TextBoxTrf.Text) - CInt(TextBoxOYO.Text)
-        gabung = CInt(TextBoxOYO.Text) + CInt(TextBoxTunai.Text) + CInt(TextBoxTrf.Text) - (CInt(TextBoxtotalbill.Text) - CInt(TextBoxpotonganlain.Text) + CInt(TextBoxadminfee.Text) + CInt(TextBoxExtraBed.Text))
+            Dim ttlbayar As Integer = CInt(TextBoxtotalbill.Text) - CInt(TextBoxpotonganlain.Text) + CInt(TextBoxadminfee.Text) + CInt(TextBoxExtraBed.Text) - CInt(TextBoxTunai.Text) - CInt(TextBoxTrf.Text) - CInt(TextBoxOYO.Text)
+            gabung = CInt(TextBoxOYO.Text) + CInt(TextBoxTunai.Text) + CInt(TextBoxTrf.Text) - (CInt(TextBoxtotalbill.Text) - CInt(TextBoxpotonganlain.Text) + CInt(TextBoxadminfee.Text) + CInt(TextBoxExtraBed.Text))
 
-        Dim sqlstr = "UPDATE RESEPSIONIS
+            Dim sqlstr = "UPDATE RESEPSIONIS
                             SET 
                             TOTALBYR = '" & CInt(TextBoxtotalbill.Text) & "',
                             CF ='" & CInt(TextBoxCF.Text) & "',
@@ -1253,25 +1266,47 @@ Public Class Kedatangan
                             TRMOYO= '" & TextBoxOYO.Text & "'                     
                             WHERE URUT ='" & nourut & "'"
 
-        Dim dt As New DataTable
-        masuktabel(sqlstr, dt)
-
-        ''UPDATE DATA KAS
-        'case 1 : kas salah nominal
-        'case 2 : salah transfer seharusnya kas
-        'case 3 : salah kas seharusnya transfer
+            Dim dt As New DataTable
+            masuktabel(sqlstr, dt)
 
 
-        UPDATEKASEDIT()
+        'UPDATEKASEDIT()
+        Dim DTINPUT As New DataTable
+        DTINPUT.Columns.Add("NoResepsionis")
+        DTINPUT.Columns.Add("Tanggal")
+        DTINPUT.Columns.Add("Keterangan")
+        DTINPUT.Columns.Add("Keluar")
+        DTINPUT.Columns.Add("Masuk")
+        ''masukkan data baru
+        DTINPUT.Rows.Clear()
+        If DataGridViewTunai.RowCount > jmlinputawal Then
+            If DataGridViewTunai.Rows.Count > 0 Then
+                For a = jmlinputawal To DataGridViewTunai.Rows.Count - 1
+                    DTINPUT.Rows.Add()
+                    DTINPUT.Rows(DTINPUT.Rows.Count - 1)("NoResepsionis") = nourut
+                    DTINPUT.Rows(DTINPUT.Rows.Count - 1)("Tanggal") = CDate(DataGridViewTunai.Rows(a).Cells("ColumnTgl").Value).ToString("yyyy-MM-dd HH:mm:ss")
+                    DTINPUT.Rows(DTINPUT.Rows.Count - 1)("Keterangan") = "+TAMBAH+ " & DataGridViewTunai.Rows(a).Cells("ColumnKeterangan").Value
+                    DTINPUT.Rows(DTINPUT.Rows.Count - 1)("Masuk") = DataGridViewTunai.Rows(a).Cells("ColumnTunai").Value
+                    DTINPUT.Rows(DTINPUT.Rows.Count - 1)("Keluar") = "0"
+                Next
+                Dim STRINGSQL As String = "SELECT * FROM KAS ORDER BY URUT DESC LIMIT 1"
+                changedatafromtabel(STRINGSQL, DTINPUT)
+                UPDATESALDOKAS(CDate(DataGridViewTunai.Rows(0).Cells("ColumnTgl").Value).ToString("yyyy-MM-dd HH:mm:ss"))
+            End If
+            jmlinputawal = 0
+        End If
+
+
 
 
         MsgBox("EDIT DATA BERHASIL, DATA BERHASIL DISIMPAN")
-        clear()
-        allenabled()
-        GroupBoxCheckout.Visible = False
-        'printinvoice()
-        Pendinglist.Visible = True
-        Me.Close()
-        SelesaiList.Close()
+            clear()
+            allenabled()
+            GroupBoxCheckout.Visible = False
+            'printinvoice()
+            Pendinglist.Visible = True
+            Me.Close()
+            SelesaiList.Close()
+        'End If
     End Sub
 End Class

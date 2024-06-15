@@ -968,9 +968,9 @@ Partial Class Kedatangan
         'ButtonTambah
         '
         Me.ButtonTambah.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonTambah.Location = New System.Drawing.Point(31, 697)
+        Me.ButtonTambah.Location = New System.Drawing.Point(34, 700)
         Me.ButtonTambah.Name = "ButtonTambah"
-        Me.ButtonTambah.Size = New System.Drawing.Size(168, 30)
+        Me.ButtonTambah.Size = New System.Drawing.Size(165, 28)
         Me.ButtonTambah.TabIndex = 69
         Me.ButtonTambah.Text = "Tambah"
         Me.ButtonTambah.UseVisualStyleBackColor = True
