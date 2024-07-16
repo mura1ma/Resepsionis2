@@ -6,8 +6,8 @@
 
     Private Sub Buttonpenyesuaian_Click(sender As Object, e As EventArgs) Handles Buttonpenyesuaian.Click
         UPDATESALDOKAS(DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"))
-        UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), "Cafe")
-        UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), "Kasbelanja")
+        UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), "CAFE")
+        UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00"), "KASBELANJA")
         MsgBox("Update selesai")
     End Sub
     Sub UPDATESALDOLAIN(ByVal tglupdate As String, ByVal buku As String)

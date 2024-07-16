@@ -152,20 +152,9 @@ Public Class Cafeblmlunaslist
         DataGridView1.DataSource = dt
 
         ''KUMPULKAN BON JADI SATU
-        Dim DTLISTBON As New DataTable
-        sqlstr = "SELECT NAMA FROM TRXCAFE WHERE BLMLUNAS = 'TRUE' ORDER BY NAMA ASC"
+        Dim DTLISTBON As New DataTable '
+        sqlstr = "SELECT DISTINCT NAMA FROM TRXCAFE WHERE BLMLUNAS = 'TRUE'"
         masuktabel(sqlstr, DTLISTBON)
-
-        Dim CTR = DTLISTBON.Rows.Count - 1
-        Dim LASTNAME As String = DTLISTBON.Rows(CTR)("NAMA").TRIM()
-        While CTR > 0
-            CTR = CTR - 1
-            If DTLISTBON.Rows(CTR)("NAMA") = LASTNAME Then
-                DTLISTBON.Rows.RemoveAt(CTR)
-            Else
-                LASTNAME = DTLISTBON.Rows(CTR)("NAMA")
-            End If
-        End While
 
         DTLISTBON.Columns.Add("TOTAL BON", GetType(Integer))
 

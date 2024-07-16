@@ -32,7 +32,7 @@ Public Class Laporankas
             sqlstr = "SELECT * FROM " & BUKU & " WHERE TANGGAL >= '" & DateTimePickerAWAL.Value.Date.ToString("yyyy-MM-dd") & "' AND TANGGAL <= '" & DateTimePickerAKHIR.Value.Date.ToString("yyyy-MM-dd 23:59:59") & "' ORDER BY TANGGAL ASC"
             masuktabel(sqlstr, dt)
             If BUKU = "kas" Then
-                sqlstrresepsionis = "SELECT * FROM KAS INNER JOIN RESEPSIONIS ON kas.NoResepsionis= resepsionis.URUT WHERE TANGGAL >= '" & DateTimePickerAWAL.Value.Date.ToString("yyyy-MM-dd") & "' AND TANGGAL <= '" & DateTimePickerAKHIR.Value.Date.ToString("yyyy-MM-dd 23:59:59") & "' ORDER BY TANGGAL ASC"
+                sqlstrresepsionis = "SELECT * FROM KAS INNER JOIN RESEPSIONIS ON KAS.NoResepsionis= RESEPSIONIS.URUT WHERE TANGGAL >= '" & DateTimePickerAWAL.Value.Date.ToString("yyyy-MM-dd") & "' AND TANGGAL <= '" & DateTimePickerAKHIR.Value.Date.ToString("yyyy-MM-dd 23:59:59") & "' ORDER BY TANGGAL ASC"
                 masuktabel(sqlstrresepsionis, DTresepsionis)
                 dt.Columns.Add("NAMA", GetType(String))
                 dt.Columns.Add("PETUGASIN", GetType(String))

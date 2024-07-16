@@ -236,7 +236,7 @@ Public Class Cafe
                                 '0' , '" & CInt(DTSALDO.Rows(0)("SALDO")) + CInt(totaltrx) & "')"
 
                             masuktabel(sqlstrkas, dtkas)
-                            UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss"), "Cafe")
+                            UPDATESALDOLAIN(DateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss"), "CAFE")
 
                             ''Save to tabel trxcafe
                             Dim dturutakhir As New DataTable

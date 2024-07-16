@@ -96,11 +96,11 @@ Public Class Prive
         DataGridView1.Rows.Clear()
         Dim BUKU As String = ""
         If ComboBox1.Text = "Resepsionis" Then
-            BUKU = "kas"
+            BUKU = "KAS"
         ElseIf ComboBox1.Text = "Cafe" Then
-            BUKU = "cafe"
+            BUKU = "CAFE"
         ElseIf ComboBox1.Text = "Kas Belanja" Then
-            BUKU = "kasbelanja"
+            BUKU = "KASBELANJA"
         Else
             MsgBox("Masukkan buku")
         End If
@@ -110,7 +110,7 @@ Public Class Prive
             masuktabel(sqlstr, dt)
             DataGridView1.DataSource = dt
             DataGridView1.Columns(0).Visible = False
-            If BUKU = "kas" Then
+            If BUKU = "KAS" Then
                 DataGridView1.Columns(1).Visible = False
             End If
 
@@ -345,14 +345,25 @@ Public Class Prive
         Dim sqlstr As String = "SELECT * FROM KAS ORDER BY TANGGAL DESC LIMIT 1"
         Dim DT As New DataTable
         masuktabel(sqlstr, DT)
-        TextBoxSaldoResepsionis.Text = DT.Rows(0)("SALDO")
+        TextBoxSaldoResepsionis.Text = FormatNumber(DT.Rows(0)("SALDO"), 0)
         DT = New DataTable
         sqlstr = "SELECT * FROM CAFE ORDER BY TANGGAL DESC LIMIT 1"
         masuktabel(sqlstr, DT)
-        TextBoxSaldoCafe.Text = DT.Rows(0)("SALDO")
+        TextBoxSaldoCafe.Text = FormatNumber(DT.Rows(0)("SALDO"))
         DT = New DataTable
         sqlstr = "SELECT * FROM KASBELANJA ORDER BY TANGGAL DESC LIMIT 1"
         masuktabel(sqlstr, DT)
-        TextBoxSaldoBelanja.Text = DT.Rows(0)("SALDO")
+        TextBoxSaldoBelanja.Text = FormatNumber(DT.Rows(0)("SALDO"))
+
+        '''saldo bon cafe
+        DT = New DataTable
+        sqlstr = "SELECT SUM(TTLHARGA) AS TOTALBON FROM TRXCAFE WHERE BLMLUNAS = 'TRUE'"
+        masuktabel(sqlstr, DT)
+        TextBoxBonCafe.Text = FormatNumber(DT.Rows(0)("TOTALBON"))
+
+        ''TOTAL UANG CAFE
+        TextBoxTotalCafe.Text = (CInt(TextBoxSaldoCafe.Text) + CInt(TextBoxBonCafe.Text)).ToString("N0")
+
     End Sub
+
 End Class
