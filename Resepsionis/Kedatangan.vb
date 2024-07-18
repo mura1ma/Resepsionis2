@@ -320,6 +320,8 @@ Public Class Kedatangan
                 dtinput.Rows(0)("NOHP") = TextBoxHP.Text
                 dtinput.Rows(0)("PETUGASIN") = ComboBoxKry.Text
                 dtinput.Rows(0)("KETERANGAN") = TextBoxket.Text
+                dtinput.Rows(0)("NOKEND") = TextBoxNokend.Text
+                dtinput.Rows(0)("JENISKEND") = TextBoxNokend.Text
                 dtinput.Rows(0)("CINOUT") = "CI"  ''' CHECK IN
                 changedatafromtabel(sqlstr, dtinput)
                 UPDATEKAS()
@@ -440,6 +442,8 @@ Public Class Kedatangan
         TBL.Columns.Add("SALDO")
         TBL.Columns.Add("CINOUT")
         TBL.Columns.Add("URUT")
+        TBL.Columns.Add("NOKEND")
+        TBL.Columns.Add("JENISKEND")
     End Sub
     Sub clear()
         TextBoxbid.Text = ""
@@ -462,6 +466,8 @@ Public Class Kedatangan
         TextBoxTunai.Text = "0"
         TextBoxTrf.Text = "0"
         TextBoxkettambah.Text = ""
+        TextBoxNokend.Text = ""
+        TextBoxJeniskend.Text = ""
         ComboBoxOUT.Text = ""
         DataGridViewTunai.Rows.Clear()
         nourut = 0
@@ -504,6 +510,8 @@ Public Class Kedatangan
         GroupBoxPembayaran.Enabled = True
         DataGridViewTunai.Enabled = True
         TextBoxkettambah.Enabled = True
+        TextBoxNokend.Enabled = True
+        TextBoxJeniskend.Enabled = True
 
         Try
             Dim angka As Integer = CInt(TextBoxadminfee.Text)
@@ -544,8 +552,8 @@ Public Class Kedatangan
         TextBoxOYO.Enabled = False
         TextBoxTrf.Enabled = False
         DataGridViewTunai.Enabled = False
-        'TextBoxkettambah.Enabled = False
-
+        TextBoxNokend.Enabled = False
+        TextBoxJeniskend.Enabled = False
     End Sub
 
     Private Sub ButtonCheckout_Click(sender As Object, e As EventArgs) Handles ButtonCheckout.Click
@@ -608,6 +616,8 @@ Public Class Kedatangan
                             PETUGASIN= '" & ComboBoxKry.Text & "',
                             PETUGASOUT= '" & ComboBoxOUT.Text & "',
                             KETERANGAN= '" & TextBoxket.Text & "',
+                            NOKEND= '" & TextBoxNokend.Text & "',
+                            JENISKEND= '" & TextBoxJeniskend.Text & "',
                             CINOUT = 'CO' 
                             WHERE URUT ='" & nourut & "'"
 
@@ -1146,6 +1156,8 @@ Public Class Kedatangan
                             PETUGASIN= '" & ComboBoxKry.Text & "',
                             PETUGASOUT= '" & ComboBoxOUT.Text & "',
                             KETERANGAN= '" & TextBoxket.Text & "',
+                            NOKEND = '" & TextBoxNokend.Text & "',
+                            JENISKEND = '" & TextBoxJeniskend.Text & "',
                             CINOUT = 'CO' 
                             WHERE URUT ='" & nourut & "'"
 
