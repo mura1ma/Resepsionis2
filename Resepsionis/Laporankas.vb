@@ -15,11 +15,11 @@ Public Class Laporankas
         DataGridView1.Rows.Clear()
         Dim BUKU As String = ""
         If ComboBox1.Text = "Resepsionis" Then
-            BUKU = "kas"
+            BUKU = "KAS"
         ElseIf ComboBox1.Text = "Cafe" Then
-            BUKU = "cafe"
+            BUKU = "CAFE"
         ElseIf ComboBox1.Text = "Kas Belanja" Then
-            BUKU = "kasbelanja"
+            BUKU = "KASBELANJA"
         Else
             MsgBox("Masukkan buku")
         End If
@@ -31,7 +31,7 @@ Public Class Laporankas
             Dim sqlstrresepsionis As String
             sqlstr = "SELECT * FROM " & BUKU & " WHERE TANGGAL >= '" & DateTimePickerAWAL.Value.Date.ToString("yyyy-MM-dd") & "' AND TANGGAL <= '" & DateTimePickerAKHIR.Value.Date.ToString("yyyy-MM-dd 23:59:59") & "' ORDER BY TANGGAL ASC"
             masuktabel(sqlstr, dt)
-            If BUKU = "kas" Then
+            If BUKU = "KAS" Then
                 sqlstrresepsionis = "SELECT * FROM KAS INNER JOIN RESEPSIONIS ON KAS.NoResepsionis= RESEPSIONIS.URUT WHERE TANGGAL >= '" & DateTimePickerAWAL.Value.Date.ToString("yyyy-MM-dd") & "' AND TANGGAL <= '" & DateTimePickerAKHIR.Value.Date.ToString("yyyy-MM-dd 23:59:59") & "' ORDER BY TANGGAL ASC"
                 masuktabel(sqlstrresepsionis, DTresepsionis)
                 dt.Columns.Add("NAMA", GetType(String))
