@@ -111,7 +111,7 @@ Partial Class Laporankas
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(981, 565)
+        Me.DataGridView1.Size = New System.Drawing.Size(1108, 565)
         Me.DataGridView1.TabIndex = 46
         '
         'ButtonKembali
@@ -131,7 +131,7 @@ Partial Class Laporankas
         Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(618, 130)
+        Me.DataGridView2.Location = New System.Drawing.Point(745, 130)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowHeadersVisible = False
@@ -153,7 +153,7 @@ Partial Class Laporankas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1005, 710)
+        Me.ClientSize = New System.Drawing.Size(1132, 710)
         Me.ControlBox = False
         Me.Controls.Add(Me.Buttonexport)
         Me.Controls.Add(Me.DataGridView2)

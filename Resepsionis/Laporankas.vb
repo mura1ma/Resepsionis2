@@ -78,10 +78,10 @@ Public Class Laporankas
     Private Sub ComboBox1_TextChanged(sender As Object, e As EventArgs) Handles ComboBox1.TextChanged
         If ComboBox1.Text = "Cafe" Then
             'MsgBox(DataGridView1.Width)
-            DataGridView1.Width = 450
+            DataGridView1.Width = 545
             DataGridView2.SendToBack()
         Else
-            DataGridView1.Width = 736
+            DataGridView1.Width = 831
             DataGridView2.SendToBack()
         End If
     End Sub
